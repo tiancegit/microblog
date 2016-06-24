@@ -21,5 +21,4 @@ def index():
                            title='home',
                            user=user,
                            posts=posts
-
                            )
