@@ -21,6 +21,7 @@ from app import views
 
 ```
 
+---
 
 在 Flask-WTF 中，表单是表示成对象，Form 类的子类。一个表单子类简单地把表单的域定义成类的变量。  
 我们将要创建一个登录表单，用户用于认证系统。在我们应用程序中支持的登录机制不是标准的用户名/密码类型，我们将使用 OpenID。  
@@ -37,3 +38,35 @@ class LoginForm(Form):
     openid = StringField('openid', validators=[DataRequired()])
     remember_me = BooleanField('remember_me', default=False)
 ```
+
+我相信这个类不言而明。我们导入 Form 类，接着导入两个我们需要的字段类，TextField 和 BooleanField。  
+DataRequired 验证器只是简单地检查相应域提交的数据是否是空。  
+在 Flask-WTF 中有许多的验证器，我们将会在以后看到它们。
+
+---
+
+我们同样需要一个包含生成表单的 HTML 的模板。好消息是我们刚刚创建的 LoginForm 类知道如何呈现为 HTML 表单字段，  
+所以我们只需要集中精力在布局上。这里就是我们登录的模板
+(文件 app/templates/login.html):
+```html
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Sign In</h1>
+<form action="" method="post" name="login">
+    {{form.hidden_tag()}}
+    <p>
+        Please enter your OpenID:<br>
+        {{form.openid(size=80)}}<br>
+    </p>
+    <p>{{form.remember_me}} Remember Me</p>
+    <p><input type="submit" value="Sign In"></p>
+</form>
+{% endblock %}
+
+```
+
+
+
+
