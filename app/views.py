@@ -7,7 +7,7 @@ from app import app
 def index():
     user = {'nickname': 'Miguel'}  # fake user
     posts = [
-        #fake array of posts#
+        # fake array of posts#
         {
             'author': {'nickname': 'John'},
             'body': 'Beautiful day in portland'
@@ -16,13 +16,10 @@ def index():
             'author': {'nickname': 'Susan'},
             'body': 'The Avengers movie was so cool!'
         }
-     ]
+    ]
     return render_template('index.html',
                            title='home',
                            user=user,
                            posts=posts
 
-    )
-
-
-
+                           )
