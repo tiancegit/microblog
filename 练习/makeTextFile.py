@@ -1,40 +1,48 @@
 #!/usr/bin/env python
-
+# -* - coding: UTF-8 -* -
 'makeTextFile.py -- create text file'
 
 import os
+ls = os.linesep #缩短变量名，改善访问该变量的性能。
 
+'''类似os.linesep这样的名字需要解释器做两次查询：
+（1）查找os以确认它是一个模块， （2）在这个模块中查找linesep变量。
+&为模块也是全局变量，我们多消耗了系统资源。
+如果你在一个函数中像这样频繁使用一个属性，我们建议你为该属性取一个本地变量别名。
+变量查找速度将会快很多——在查找全局变量之前，总是先查找本地变量。这也是一个让你的程序跑的更快的技巧：将经常用到的模块属性替换为一个本地引用。
+代码 “跑”得更快，而也不用老是敲那么长的变量名了。
+在我们的代码片段中，并没有定义函数，所以不能给你定义本地别名的示例。不过我们有一个全局别名，至少也减少了一次名字查询。'''
+
+x=0
 # get filename
 while True:
-    fname = raw_input('Enter file name: ')
-    if os.path.exists(fname):
+    fname = raw_input('Enter file name')  #输入文件名
+    if os.path.exists(fname):           #如果文件名已存在，报错，并提示重新输入文件名
         print"*** ERROR: '%s' already exists" % fname
     else:
         break
 
 # get file content (text) lines
 all = []
-print "\nEnter lines ('.' by itself to quit).\n"
+print "\nEnter lines ('.' by itself to quit).\n"  #格式化换行提示
 
 # loop until user terminates input
 while True:
-    entry = raw_input('> ')
-    if entry == '.':
+    x=x+1
+    entry = raw_input('%d>>>' % x)    #新加的一个小行号提示
+    if entry == '.':                  #如果是输入. 就退出循环
         break
-    else:
+    else:                             #否则，把新输入的行加进去list all里面
         all.append(entry)
 
-# write lines to file with NEWLINE line terminator
-fobj = open(fname,'w')
-fobj.write('\n'.join(all))
+# write lines to file with proper line-ending
+fobj = open(fname, 'w')              #打开文件，进行写的操作
+fobj.writelines(['%s%s' % (x, ls) for x in all])  #格式化分行写进
 fobj.close()
 print 'DONE!'
 
 
-
-'''1 ~ 3行
-UNIX启动行之后是模块的文档字符串。应该坚持写简洁并有用的文档字符串。这里我们写的有点短，不过对这段代码已经够用了。（建议读者看一下标准库中cgi模块的文档字符串，那是一个很好的示例）。
-5 ~ 6行
+'''5 ~ 6行
 之后我们导入os模块，在第6行我们为os.linesep属性取了一个新别名。这样做一方面可以缩短变量名，另一方面也能改善访问该变量的性能。
 核心提示：使用局部变量替换模块变量
 类似os.linesep这样的名字需要解释器做两次查询：（1）查找os以确认它是一个模块， （2）在这个模块中查找linesep变量。&为模块也是全局变量，我们多消耗了系统资源。如果你在一个函数中像这样频繁使用一个属性，我们建议你为该属性取一个本地变量别名。变量查找速度将会快很多——在查找全局变量之前，总是先查找本地变量。这也是一个让你的程序跑的更快的技巧：将经常用到的模块属性替换为一个本地引用。代码 “跑”得更快，而也不用老是敲那么长的变量名了。在我们的代码片段中，并没有定义函数，所以不能给你定义本地别名的示例。不过我们有一个全局别名，至少也减少了一次名字查询。
