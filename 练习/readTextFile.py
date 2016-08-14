@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# -* - coding: UTF-8 -* -
 'readTextFile.py -- read and display text file'
 
 #get filename
@@ -16,8 +16,6 @@ else:
     for eachline in fodj:
         print eachline,
     fodj.close()
-
-
 
 '''脚本的剩余部分展示了一种新的Python结构，try-except-else语句。try子句是一段我们希望监测错误的代码块。
 在第10〜11行代码，我们尝试打开用户输入的文件。except子句是我们处理错误的地方。在12〜13行，我们检查open()是否失败——通常是IOError类型的错误。
