@@ -52,8 +52,8 @@ git reset : 可以把当前版本回退到之前的版本.HEAD代表当前版本
 
 ###git log 中的commit 版本号问题
 
-```commit 5a79abaaca6fa6ad7b8d7cb59790e117f8ee3482
-Author: mail.com<mail.com>
+```commit 5a79abaaca6fa6ad7b8d7cb59790e117f8ee3482  
+Author: mail.com<mail.com>  
 Date:   Sun Aug 14 16:33:15 2016 +0800
 ```
 
@@ -71,6 +71,6 @@ commit 5a79abaaca6fa6ad7b8d7cb59790e117f8ee3482
 
 * 要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
 
-* Git的版本回退速度非常快，因为Git在内部有个指向当前版本的HEAD指针，当你回退版本的时候，Git仅仅是把HEAD从指向对应版本的 commit_id。
+* Git的版本回退速度非常快，因为Git在内部有个指向当前版本的HEAD指针，回退版本的时候，Git仅是把HEAD从指向对应版本的commit_id。
 
 
