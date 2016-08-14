@@ -22,6 +22,9 @@ git status : status 命令可以时刻掌握仓库的动态。可以看到那些
 git diff : diff顾名思义，是查看difference（差异）；显示的是Unix通用的diff格式，用于比较修改前后的差异。  
 
 
+
+
+
 注意事项
 ---
 ###git的适用范围
