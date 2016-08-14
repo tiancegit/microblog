@@ -20,6 +20,7 @@ git add : 添加文件到git仓库内。
 git commit : 把文件提交到git仓库内。 -m 'new file'  参数m后面的是本次提交的说明，-最好是有意义的。  
 git status : status 命令可以时刻掌握仓库的动态。可以看到那些文件进行修改，尚未提交到仓库！  
 git diff : diff顾名思义，是查看difference（差异）；显示的是Unix通用的diff格式，用于比较修改前后的差异。  
+git log : log 可以看到git仓库的提交历史。加上--pretty=oneline参数,可以简化输出信息.
 
 
 
@@ -45,6 +46,25 @@ git diff : diff顾名思义，是查看difference（差异）；显示的是Unix
 * 第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件；
 
 * 第二步，使用命令git commit，完成。
+
+
+###git log 中的commit 版本号问题
+
+```commit 5a79abaaca6fa6ad7b8d7cb59790e117f8ee3482
+Author: mail.com<mail.com>
+Date:   Sun Aug 14 16:33:15 2016 +0800
+```
+
+
+commit 5a79abaaca6fa6ad7b8d7cb59790e117f8ee3482  
+这一串十六进制的数字是commit(版本号)，和SVN不一样，git的commit id不是以1,2,3...递增的数字。  
+而是一个SHA1计算出来的一个非常大的数字，用十六进制表示。每次提交的commit id 都是不一样的，以记录为准。
+因为git是分布式的版本控制系统，多人在同一个版本库内工作，要是以1,2,3..作为版本号,将会互相冲突。 
+
+需要友情提示的是，你看到的一大串类似3628164...882e1e0的是commit id（版本号），和SVN不一样，Git的commit id不是1，2，3……递增的数字，
+而是一个SHA1计算出来的一个非常大的数字，用十六进制表示，而且你看到的commit id和我的肯定不一样，以你自己的为准。为什么commit id需要用这么一大串数字表示呢
+？因为Git是分布式的版本控制系统，后面我们还要研究多人在同一个版本库里工作，如果大家都用1，2，3……作为版本号，那肯定就冲突了。
+
 
 
 
