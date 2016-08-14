@@ -11,15 +11,15 @@ CSRF_ENABLED配置是为了激活‘跨站点请求伪造’保护，激活该�
 SECRET_KEY配置，仅仅当CSRF激活的时候才需要，它是用来建立一个加密的令牌，用于验证表单，编写程序是，请务必设置难以猜测到的密钥。  
 既然有了配置文件。需要告诉 Flask去读取和使用这个配置，可以在Flask应用被创建后去做，方式如下：  
 （文件app/__init__.py）
-```
-from flask import Flask
-
-app = Flask(__name__)
-app.config.from_object('config')
-
-from app import views
-
-```
+    ```
+    from flask import Flask
+    
+    app = Flask(__name__)
+    app.config.from_object('config')
+    
+    from app import views
+    
+    ```
 
 ---
 
@@ -29,15 +29,15 @@ OpenIDs 的好处就是认证是由 OpenID 的提供者完成的，因此我们�
 我们将在表单上提供一个 ‘remember me’ 的选择框，以至于用户可以选择在他们的网页浏览器上种植 cookie ，当他们再次访问的时候，浏览器能够记住他们的登录。
 所以让我们编写第一个表单
 (文件 app/forms.py):
-```python
-from flask.ext.wtf import Form
-from wtforms import StringField, BooleanField
-from wtforms.validators import DataRequired
-
-class LoginForm(Form):
-    openid = StringField('openid', validators=[DataRequired()])
-    remember_me = BooleanField('remember_me', default=False)
-```
+    ```python
+    from flask.ext.wtf import Form
+    from wtforms import StringField, BooleanField
+    from wtforms.validators import DataRequired
+    
+    class LoginForm(Form):
+        openid = StringField('openid', validators=[DataRequired()])
+        remember_me = BooleanField('remember_me', default=False)
+    ```
 
 我相信这个类不言而明。我们导入 Form 类，接着导入两个我们需要的字段类，TextField 和 BooleanField。  
 DataRequired 验证器只是简单地检查相应域提交的数据是否是空。  
