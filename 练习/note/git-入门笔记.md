@@ -30,7 +30,7 @@ git reset : 可以把当前版本回退到之前的版本.HEAD代表当前版本
 
 注意事项
 ---
-###git的适用范围
+### git的适用范围
 明确一下，所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，Git也不例外。
 版本控制系统可以告诉你每次的改动，比如在第5行加了一个单词“Linux”，在第8行删了一个单词“Windows”。
 而图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，
@@ -50,9 +50,10 @@ git reset : 可以把当前版本回退到之前的版本.HEAD代表当前版本
 * 第二步，使用命令git commit，完成。
 
 
-###git log 中的commit 版本号问题
+### git log 中的commit 版本号问题
 
-```commit 5a79abaaca6fa6ad7b8d7cb59790e117f8ee3482  
+```
+commit 5a79abaaca6fa6ad7b8d7cb59790e117f8ee3482  
 Author: mail.com<mail.com>  
 Date:   Sun Aug 14 16:33:15 2016 +0800
 ```
@@ -64,7 +65,7 @@ commit 5a79abaaca6fa6ad7b8d7cb59790e117f8ee3482
 每提交一个版本，git会把它们串成一条时间线,用可视化工具查看git历史，将会更清楚的看到提交历史的时间线.
 
 
-###git reset 版本回退问题
+### git reset 版本回退问题
 * HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
 
 * 穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
