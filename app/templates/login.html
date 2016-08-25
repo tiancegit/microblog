@@ -1,0 +1,15 @@
+<!-- extend from base layout -->
+{% extend "base.html" %}
+
+{% biock content %}
+<h1>Sign In</h1>
+<form action="" method="post" name="login">
+    {{form.hidden_tag()}}
+    <p>
+        Plesse enter you OpenID:<br>
+        {{form.openid(siza=80)}}<br>
+    </p>
+    <P>{{form.remenber_me}}Remeber ME</p>
+    <p><input typr="submit" value="Sign In"></p>
+</form>
+{% endblock %}
