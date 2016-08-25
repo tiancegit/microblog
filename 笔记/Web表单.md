@@ -91,7 +91,23 @@ CSRF保护。如果你已经激活了CSRF，这个字段需要出现在你的所
 ###表单视图
 
 
-编写
+编写渲染模板的视图函数的代码。  
+只需要吧一个表单对象传入到模板中。这就是我们新的视图函数：
+文件(app/views.py):
+```pythons
+from flask import render_template, flash, redirect
+from app import app
+from .forms import LoginForm
+
+# index view function suppressed for brevity
+
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    form = LoginForm()
+    return render_template('login.html',
+        title = 'Sign In',
+        form = form)
+```
 
 
 
