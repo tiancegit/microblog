@@ -129,6 +129,72 @@ def login():
         form = form)
 ```
 
+validate_on_submit 方法做了所有表单处理工作。当表单正在展示给用户的时候调用它，它会返回 False.
+
+
+
+如果 validate_on_submit 在表单提交请求中被调用，它将会收集所有的数据，
+对字段进行验证，如果所有的事情都通过的话，它将会返回 True，表示数据都是合法的。
+这就是说明数据是安全的，并且被应用程序给接受了。
+
+如果至少一个字段验证失败的话，它将会返回 False，接着表单会重新呈现给用户，
+这也将给用户一次机会去修改错误。我们将会看到当验证失败后如何显示错误信息。
+
+当 validate_on_submit 返回 True，我们的登录视图函数调用了两个新的函数，
+导入自 Flask。flash 函数是一种快速的方式下呈现给用户的页面上显示一个消息。
+在我们的例子中，我将会使用它来调试，因为我们目前还不具备用户登录的必备的基础设施，
+相反我们将会用它来显示提交的数据。flash 函数在生产服务器上也是十分有作用的，
+用来提供反馈给用户有关的行动。
+
+闪现的消息不会自动出现在页面上，模板上要加入展示消息的内容，
+我们将添加这些信息到我们的基础模板中，这样所有的模板都能继承这个函数。  
+这是跟新之后的基础模板。
+（文件 app/templates/base.html）
+```html
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}} - microblog</title>
+    {% else %}
+    <title>microblog</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>Microblog: <a href="/index">Home</a></div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }} </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+</html>
+```
+
+
+显示闪现消息的技术希望是不言自明的。
+
+在我们登录视图这里使用的其它新的函数就是 redirect。
+这个函数告诉网页浏览器引导到一个不同的页面而不是请求的页面。
+在我们的视图函数中我们用它重定向到前面已经完成的首页上。
+要注意地是，闪现消息将会显示即使视图函数是以重定向结束。
+
+### 处理OpenIDs
+
+事实上，很多用户并不知道他们已经有一些 OpenIDs。
+一些大的互联网服务提供商支持 OpenID 认证自己的会员这并不是众所周知的。
+比如，如果你有一个 Google 的账号，你也就有了一个它们的 OpenID。
+
+为了让用户更方便地使用这些常用的 OpenID 登录到我们的网站，我们把它们的链接转成短名称，
+用户不必手动地输入这些 OpenID。
+
+我首先开始定义一个 OpenID 提供者的列表。我们可以把它们写入我们的配置文件中  
+(文件 config.py):
 
 
 
