@@ -108,6 +108,27 @@ def login():
         title = 'Sign In',
         form = form)
 ```
+导入了LoginForm类，从这个类，实例化一个对象，接着把它传入模板众。渲染表单所要做的  
+
+路由装饰器的 methods 参数。参数告诉Flask这个视图函数接受GET和POST请求，  
+如果不带参数，视图只接受GET请求。
+
+### 接收表单数据
+Flask-WTF使工作变得简单的另外一点就是处理提交的数据。  
+这是登录视图函数更新的版本，它验证并储存表单：  
+（文件 app/views.py）
+```python
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for OpenID="' + form.openid.data + '", remember_me=' + str(form.remember_me.data))
+        return redirect('/index')
+    return render_template('login.html',
+        title = 'Sign In',
+        form = form)
+```
+
 
 
 
