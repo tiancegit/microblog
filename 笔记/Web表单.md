@@ -184,6 +184,37 @@ validate_on_submit 方法做了所有表单处理工作。当表单正在展示�
 在我们的视图函数中我们用它重定向到前面已经完成的首页上。
 要注意地是，闪现消息将会显示即使视图函数是以重定向结束。
 
+### 加强字段验证
+
+现阶段的应用程序，如果表单提交不合理的数据将不会被接受，相反，会返回表单让用户提交合法的数据
+
+当字段验证失败之后,Flask_WTF会向表单对象中添加描述性的错误信息，这些信息是可以在模板中使用的。
+因此要添加一些逻辑来获取它。
+
+这是含有字段验证信息的登录模板，文件：
+app/templates/login.html：
+```html
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Sign In</h1>
+  <form action="" method="post" name="login">
+      {{ form.hidden_tag() }}
+      <p>
+          Please enter your OpenID:<br>
+          {{ form.openid(size=80) }}<br>
+          {% for error in form.openid.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}<br>
+      </p>
+      <p>{{ form.remember_me }} Remember Me</p>
+      <p><input type="submit" value="Sign In"></p>
+  </form>
+{% endblock %}
+
+```
+
 ### 处理OpenIDs
 
 事实上，很多用户并不知道他们已经有一些 OpenIDs。
