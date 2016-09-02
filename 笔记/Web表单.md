@@ -214,6 +214,9 @@ app/templates/login.html：
 {% endblock %}
 
 ```
+唯一的变化就是增加了一个循环获取验证openids字段的信息，
+通常情况下，任何需要验证的字段都会把错误信息放到form.field_name.errors下。  
+在我们的例子中，我们使用form.openid.errors,我们以红色字体颜色显示错误，引起用户的注意。  
 
 ### 处理OpenIDs
 
@@ -226,8 +229,31 @@ app/templates/login.html：
 
 我首先开始定义一个 OpenID 提供者的列表。我们可以把它们写入我们的配置文件中  
 (文件 config.py):
+```
+CSRF_ENABLED = True
+SECRET_KEY = 'you-will-never-guess'
 
+OPENID_PROVIDERS = [
+    { 'name': 'Google', 'url': 'https://www.google.com/accounts/o8/id' },
+    { 'name': 'Yahoo', 'url': 'https://me.yahoo.com' },
+    { 'name': 'AOL', 'url': 'http://openid.aol.com/<username>' },
+    { 'name': 'Flickr', 'url': 'http://www.flickr.com/<username>' },
+    { 'name': 'MyOpenID', 'url': 'https://www.myopenid.com' }]
+```
 
+登录视图函数中使用它们:  
+```
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for OpenID="' + form.openid.data + '", remember_me=' + str(form.remember_me.data))
+        return redirect('/index')
+    return render_template('login.html',
+        title = 'Sign In',
+        form = form,
+        providers = app.config['OPENID_PROVIDERS'])
+```
 
 
 
