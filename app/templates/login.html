@@ -8,6 +8,9 @@
     <p>
         Plesse enter you OpenID:<br>
         {{form.openid(siza=80)}}<br>
+        {% for error in form.openid.errors %}
+        <span style="color: reb;">[{{ error }}]</span>
+        {% endfor %}<br>
     </p>
     <P>{{form.remenber_me}}Remember Me</p>
     <p><input type="submit" value="Sign In"></p>
