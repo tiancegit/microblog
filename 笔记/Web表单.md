@@ -242,7 +242,7 @@ OPENID_PROVIDERS = [
 ```
 
 登录视图函数中使用它们:  
-```
+```python
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -255,6 +255,46 @@ def login():
         providers = app.config['OPENID_PROVIDERS'])
 ```
 
+从配置中获取OPENID_PROVIDERS,接着把它作为render_template中的一个参数传入到模板中。
+
+如何再登录模板中渲染这些提供商的链接:
+(文件 app/templates/login.html):
+```
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<script type="text/javascript">
+function set_openid(openid, pr)
+{
+    u = openid.search('<username>')
+    if (u != -1) {
+        // openid requires username
+        user = prompt('Enter your ' + pr + ' username:')
+        openid = openid.substr(0, u) + user
+    }
+    form = document.forms['login'];
+    form.elements['openid'].value = openid
+}
+</script>
+<h1>Sign In</h1>
+<form action="" method="post" name="login">
+    {{ form.hidden_tag() }}
+    <p>
+        Please enter your OpenID, or select one of the providers below:<br>
+        {{ form.openid(size=80) }}
+        {% for error in form.openid.errors %}
+          <span style="color: red;">[{{error}}]</span>
+        {% endfor %}<br>
+        |{% for pr in providers %}
+          <a href="javascript:set_openid('{{ pr.url }}', '{{ pr.name }}');">{{ pr.name }}</a> |
+        {% endfor %}
+    </p>
+    <p>{{ form.remember_me }} Remember Me</p>
+    <p><input type="submit" value="Sign In"></p>
+</form>
+{% endblock %}
+```
 
 
 
