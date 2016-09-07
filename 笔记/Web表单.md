@@ -296,6 +296,13 @@ function set_openid(openid, pr)
 {% endblock %}
 ```
 
+。一些 OpenIDs 含有用户名，因此对于这些用户，
+我们必须利用 javascript 的魔力提示用户输入用户名并且组成 OpenIDs。
+当用户点击一个 OpenIDs 提供商的链接并且(可选)输入用户名，
+该提供商相应的 OpenID 就被写入到文本域中。
+
+
+
 
 
 
