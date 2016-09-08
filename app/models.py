@@ -1,5 +1,7 @@
+#!flask/bin/python
 from app import db
 
+'''定义数据库模型'''
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
