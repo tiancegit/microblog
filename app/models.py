@@ -1,4 +1,6 @@
 #!flask/bin/python
+# -* - coding: UTF-8 -* -
+
 from app import db
 
 '''定义数据库模型'''
