@@ -1,5 +1,5 @@
-# -* - coding: UTF-8 -* -
 #!flask/bin/python
+# -* - coding: UTF-8 -* -
 #数据库迁移脚本
 import imp
 from migrate.versioning import api
