@@ -1,4 +1,4 @@
-教程链接：[Linux 基础入门（新版）](https://www.shiyanlou.com/courses/1/labs/2/console)
+﻿教程链接：[Linux 基础入门（新版）](https://www.shiyanlou.com/courses/1/labs/2/console)
 
 ###1).重要快捷键：
 Tab : 使用Tab键来进行命令补全，可以补全命令，目录，命令参数
