@@ -7,7 +7,13 @@
       <h3>This is a heading</h3>
     <p> 与 </p> 之间的文本被显示为段落:
       <p>Hello world</p>
-<>
+    HTML 链接
+      HTML 链接是通过 <a> 标签进行定义的。
+        <a href="http://www.w3school.com.cn">This is a link</a>
+    HTML 图像
+      HTML 图像是通过 <img> 标签进行定义的。
+        <img src="w3school.jpg" width="104" height="142" />
+    
 
 
 
@@ -19,13 +25,3 @@
 
 
 
-
-
-
-
-HTML 属性
-HTML 标签可以拥有属性。属性提供了有关 HTML 元素的更多的信息。
-
-属性总是以名称/值对的形式出现，比如：name="value"。
-
-属性总是在 HTML 元素的开始标签中规定。

@@ -24,9 +24,9 @@ git status : status 命令可以时刻掌握仓库的动态。可以看到那些
 git diff : diff顾名思义，是查看difference（差异）；显示的是Unix通用的diff格式，用于比较修改前后的差异。  
 git log : log 可以看到git仓库的提交历史。加上--pretty=oneline参数,可以简化输出信息.
 giit reset : 可以把当前版本回退到之前的版本.HEAD代表当前版本，HEAD^代表上一个版本，HEAD^^（上上个版本）,HEAD~100(往上100个版本)。  
-git reset HEAD file ： 可以把暂存区的修改撤销掉（unstage），重新放回工作区
+git reset HEAD file ： 可以把暂存区的修改撤销掉（unstage），重新放回工作区。  
 gt checkout -- file : 可以丢弃工作区的修改,把 file 恢复到最近一次git commit或git add时的状态。  
-                       git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令。
+git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令。
 
 
 
@@ -120,3 +120,6 @@ Git 比别的版本控制系统设计得优秀，因为Git跟踪并管理的是�
 git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令，
 
 
+
+
+https://zhuanlan.zhihu.com/p/22609000
